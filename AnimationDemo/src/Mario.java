@@ -9,7 +9,7 @@ public class Mario extends Sprite {
 
 	public static final int MARIO_WIDTH = 40;
 	public static final int MARIO_HEIGHT = 60;
-	public static final double GRAVITY = 0.5;
+	public static final double GRAVITY = 2;
 	private double yVel;
 
 
@@ -27,7 +27,7 @@ public class Mario extends Sprite {
 		// JUMP!
 		
 		// while ()
-		yVel -= GRAVITY;
+		yVel += GRAVITY;
 		super.moveByAmount(0, yVel);
 	}
 
@@ -43,7 +43,7 @@ public class Mario extends Sprite {
 		}
 		
 		if (!hit) {
-			yVel = -1;
+			yVel = 1;
 		}
 		y = y + yVel*GRAVITY;
 

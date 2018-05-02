@@ -25,7 +25,9 @@ public class Mario extends Sprite {
 
 	public void jump() {
 		// JUMP!
+		yVel = 5;
 		
+		// while ()
 		yVel -= GRAVITY;
 		super.moveByAmount(0, yVel);
 	}

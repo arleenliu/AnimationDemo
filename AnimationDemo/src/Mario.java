@@ -20,12 +20,11 @@ public class Mario extends Sprite {
 
 	// METHODS
 	public void walk(int dir) {
-		x = x+dir;
+		x = x+5*dir;
 	}
 
 	public void jump() {
 		// JUMP!
-		yVel = 5;
 		
 		// while ()
 		yVel -= GRAVITY;
@@ -35,9 +34,19 @@ public class Mario extends Sprite {
 	public void act(ArrayList<Shape> obstacles) {
 		// FALL (and stop when a platform is hit)
 		boolean hit = false;
-		for(Shape o: obstacles) {
-			
+		for (Shape o: obstacles) {
+			if (o.contains(x, y+MARIO_HEIGHT) && o.contains(x + MARIO_WIDTH, y + MARIO_HEIGHT)) {
+				hit = true;
+				yVel = 0;
+				
+			}
 		}
+		
+		if (!hit) {
+			yVel = -1;
+		}
+		y = y + yVel*GRAVITY;
+
 		
 	}
 

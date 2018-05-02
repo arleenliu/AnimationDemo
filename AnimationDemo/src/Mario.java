@@ -9,7 +9,7 @@ public class Mario extends Sprite {
 
 	public static final int MARIO_WIDTH = 40;
 	public static final int MARIO_HEIGHT = 60;
-	public static final int GRAVITY = 9;
+	public static final int GRAVITY = -4;
 	private double yVel;
 
 
@@ -20,7 +20,7 @@ public class Mario extends Sprite {
 
 	// METHODS
 	public void walk(int dir) {
-		x = x+dir;
+		x = x+5*dir;
 	}
 
 	public void jump() {
@@ -33,9 +33,19 @@ public class Mario extends Sprite {
 	public void act(ArrayList<Shape> obstacles) {
 		// FALL (and stop when a platform is hit)
 		boolean hit = false;
-		for(Shape o: obstacles) {
-			
+		for (Shape o: obstacles) {
+			if (o.contains(x, y+MARIO_HEIGHT) && o.contains(x + MARIO_WIDTH, y + MARIO_HEIGHT)) {
+				hit = true;
+				yVel = 0;
+				
+			}
 		}
+		
+		if (!hit) {
+			yVel = -1;
+		}
+		y = y + yVel*GRAVITY;
+
 		
 	}
 
